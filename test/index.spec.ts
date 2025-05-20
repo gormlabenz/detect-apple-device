@@ -1,11 +1,11 @@
-import { myPackage } from '../src';
+import { detectAppleDevice } from '../src';
 
 describe('index', () => {
-  describe('myPackage', () => {
+  describe('detectAppleDevice', () => {
     it('should return a string containing the message', () => {
       const message = 'Hello';
 
-      const result = myPackage(message);
+      const result = detectAppleDevice(message);
 
       expect(result).toMatch(message);
     });

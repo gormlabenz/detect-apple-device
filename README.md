@@ -74,15 +74,15 @@ npm install my-package-name
 ## Usage
 
 ```ts
-import { myPackage } from 'my-package-name';
+import { detectAppleDevice } from 'my-package-name';
 
-myPackage('hello');
+detectAppleDevice('hello');
 //=> 'hello from my package'
 ```
 
 ## API
 
-### myPackage(input, options?)
+### detectAppleDevice(input, options?)
 
 #### input
 

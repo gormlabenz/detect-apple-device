@@ -1,1 +1,2 @@
-export const myPackage = (taco = ''): string => `${taco} from my package`;
+export const detectAppleDevice = (taco = ''): string =>
+  `${taco} from my package`;
