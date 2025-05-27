@@ -6,7 +6,6 @@ import { DeviceMetrics } from './types';
  */
 export function getCurrentMetrics(): DeviceMetrics | null {
   try {
-    // Umfassende Prüfung
     if (
       typeof window !== 'undefined' &&
       window.screen &&
@@ -38,22 +37,18 @@ export function normalizeDimensions(
   height: number,
   orientation: 'auto' | 'portrait' | 'landscape'
 ): [number, number] {
-  // Auto orientation - portrait is when height > width
   if (orientation === 'auto') {
     return width > height ? [height, width] : [width, height];
   }
 
-  // Explicit landscape - ensure width > height
   if (orientation === 'landscape') {
     return width < height ? [height, width] : [width, height];
   }
 
-  // Explicit portrait - ensure width < height
   if (orientation === 'portrait') {
     return width > height ? [height, width] : [width, height];
   }
 
-  // Default case (should never happen if proper type checking is in place)
   return [width, height];
 }
 

@@ -1,4 +1,3 @@
-// Detection options
 export interface DetectionOptions {
   deviceTypes?: string[];
   minReleaseDate?: string;
@@ -10,19 +9,16 @@ export interface DetectionOptions {
   additionalDevices?: Device[];
 }
 
-// Custom device metrics for manual identification
 export interface DeviceMetrics {
   logicalWidth: number;
   logicalHeight: number;
   scaleFactor: number;
 }
 
-// Detection result
 export interface DetectionResult {
   matches: MatchedDevice[];
 }
 
-// Matched device with confidence and details
 export interface MatchedDevice {
   device: {
     name: string;
@@ -53,7 +49,6 @@ export interface MatchedDevice {
   };
 }
 
-// Device database format
 export interface DeviceDatabase {
   devices: Device[];
 }
@@ -84,10 +79,8 @@ export interface DeviceVariant {
   };
 }
 
-// Required version of detection options (with all properties defined)
 export type RequiredDetectionOptions = Required<DetectionOptions>;
 
-// Define the extended function type with identify method
 export interface DetectAppleDeviceFunction {
   (options?: DetectionOptions): DetectionResult;
   identify: (
