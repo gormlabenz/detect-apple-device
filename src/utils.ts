@@ -6,23 +6,26 @@ import { DeviceMetrics } from './types';
  */
 export function getCurrentMetrics(): DeviceMetrics | null {
   try {
-    // Check if window exists before trying to access its properties
+    // Umfassende Prüfung
     if (
       typeof window !== 'undefined' &&
-      window !== null &&
-      'innerWidth' in window &&
-      'innerHeight' in window &&
-      'devicePixelRatio' in window
+      window.screen &&
+      typeof window.screen.width === 'number' &&
+      typeof window.screen.height === 'number' &&
+      window.screen.width > 0 &&
+      window.screen.height > 0
     ) {
       return {
-        logicalWidth: window.innerWidth,
-        logicalHeight: window.innerHeight,
-        scaleFactor: window.devicePixelRatio,
+        logicalWidth: window.screen.width,
+        logicalHeight: window.screen.height,
+        scaleFactor:
+          typeof window.devicePixelRatio === 'number'
+            ? window.devicePixelRatio
+            : 1,
       };
     }
     return null;
   } catch (error) {
-    // Handle any unexpected errors
     return null;
   }
 }

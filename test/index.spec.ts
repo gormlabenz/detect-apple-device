@@ -1,13 +1,21 @@
 import { detectAppleDevice } from '../src';
 import { testDevices } from './data/devices';
 
-// Mock global window object
 const mockWindow = () => {
   // @ts-ignore: mock window for testing
   global.window = {
     innerWidth: 402,
     innerHeight: 874,
     devicePixelRatio: 3,
+    screen: {
+      width: 402,
+      height: 874,
+      availWidth: 402,
+      availHeight: 874,
+      colorDepth: 24,
+      pixelDepth: 24,
+      orientation: {},
+    } as Screen,
   };
 };
 
@@ -68,6 +76,15 @@ describe('index', () => {
         innerWidth: 402, // Matches iPhone 16 Pro
         innerHeight: 800, // Doesn't match
         devicePixelRatio: 2, // Doesn't match
+        screen: {
+          width: 402, // Matches iPhone 16 Pro
+          height: 800, // Doesn't match
+          availWidth: 402,
+          availHeight: 800,
+          colorDepth: 24,
+          pixelDepth: 24,
+          orientation: {},
+        } as Screen,
       };
 
       // Test with different confidence values
