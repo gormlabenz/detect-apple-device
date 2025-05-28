@@ -10,6 +10,12 @@ A lightweight, dependency-free TypeScript library that approximates Apple device
 
 **Data Source**: Device specifications are based on [iOS Resolution](https://www.ios-resolution.com/) as of May 27, 2025.
 
+## 🚀 Interactive Demo
+
+**Try it live**: [detect-apple-device-demo.vercel.app](https://detect-apple-device-demo.vercel.app/)
+
+Test automatic detection, manual input, and configuration options in real-time.
+
 ## Features
 
 - 🎯 **Screen-Based Approximation** - Approximates device identification using screen metrics
