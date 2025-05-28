@@ -6,9 +6,9 @@
     "lib/**/*"
   ],
   "type": "module",
-  "main": "./lib/src/index.js",
-  "module": "./lib/src/index.js",
-  "types": "./lib/src/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "clean": "rm -rf ./lib/",
@@ -32,8 +32,9 @@
   },
   "exports": {
     ".": {
-      "import": "./lib/src/index.js",
-      "types": "./lib/src/index.d.ts"
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "default": "./lib/index.js"
     }
   },
   "engines": {
@@ -48,12 +49,15 @@
     "screen",
     "metrics",
     "browser",
-    "typescript"
+    "typescript",
+    "esm",
+    "vite"
   ],
   "bugs": {
     "url": "https://github.com/gormlabenz/detect-apple-device/issues"
   },
   "homepage": "https://github.com/gormlabenz/detect-apple-device#readme",
+  "sideEffects": false,
   "devDependencies": {
     "@ryansonshine/commitizen": "^4.2.8",
     "@ryansonshine/cz-conventional-changelog": "^3.3.4",
