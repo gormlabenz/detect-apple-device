@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: ['**/test/**/*.spec.ts'],
@@ -6,10 +6,11 @@ module.exports = {
     '<rootDir>/src/**/*.ts',
     '!<rootDir>/src/types/**/*.ts',
   ],
-  globals: {
-    'ts-jest': {
+  extensionsToTreatAsEsm: ['.ts'],
+  transform: {
+    '^.+\\.ts$': ['ts-jest', {
+      useESM: true,
       diagnostics: false,
-      isolatedModules: true,
-    },
+    }],
   },
 };

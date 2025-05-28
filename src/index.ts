@@ -1,6 +1,6 @@
 import { defaultDeviceDatabase } from './database';
 import { identifyWithMetrics } from './detection';
-import {
+import type {
   DetectAppleDeviceFunction,
   DetectionOptions,
   DetectionResult,

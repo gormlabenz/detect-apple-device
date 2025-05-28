@@ -1,4 +1,4 @@
-import { DeviceDatabase } from './types';
+import type { DeviceDatabase } from './types';
 
 export const defaultDeviceDatabase: DeviceDatabase = {
   devices: [

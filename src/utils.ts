@@ -1,4 +1,4 @@
-import { DeviceMetrics } from './types';
+import type { DeviceMetrics } from './types';
 
 /**
  * Safely gets current device metrics from browser environment
@@ -24,7 +24,7 @@ export function getCurrentMetrics(): DeviceMetrics | null {
       };
     }
     return null;
-  } catch (error) {
+  } catch {
     return null;
   }
 }
