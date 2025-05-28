@@ -1,9 +1,9 @@
 // @ts-check
 
 import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import prettierConfig from 'eslint-config-prettier';
 import prettier from 'eslint-plugin-prettier';
+import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   js.configs.recommended,
@@ -23,7 +23,7 @@ export default tseslint.config(
     rules: {
       'prettier/prettier': 'warn',
       '@typescript-eslint/no-use-before-define': 'off',
-      'quotes': ['warn', 'single', { avoidEscape: true }],
+      quotes: ['warn', 'single', { avoidEscape: true }],
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-var-requires': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
@@ -36,5 +36,5 @@ export default tseslint.config(
   },
   {
     ignores: ['lib/**', 'coverage/**', 'node_modules/**'],
-  },
+  }
 );
