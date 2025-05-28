@@ -13,12 +13,22 @@ A lightweight, dependency-free TypeScript library that approximates Apple device
 ## Features
 
 - 🎯 **Screen-Based Approximation** - Approximates device identification using screen metrics
+- 🔒 **Privacy First** - Uses only standard browser APIs, no fingerprinting or tracking
 - 📱 **Comprehensive Database** - Supports iPhone, iPad, Apple Watch, and iPod Touch (2007-2024)
 - 🔧 **Flexible Configuration** - Customizable detection parameters and confidence thresholds
 - 📏 **Orientation Handling** - Automatic portrait/landscape orientation normalization
 - 🌐 **Browser Safe** - Works reliably in all browser environments with proper fallbacks
 - 📦 **Zero Dependencies** - Lightweight and self-contained
 - 🔒 **TypeScript Ready** - Full type definitions included
+
+## Privacy & Security
+
+**Privacy-first**: Uses only standard browser APIs (`window.screen`, `window.devicePixelRatio`) with no fingerprinting, tracking, or data collection.
+
+## Requirements
+
+- **Node.js**: 18.0.0+ (for development)
+- **Browsers**: All modern browsers
 
 ## Detection Scope & Limitations
 
@@ -35,6 +45,8 @@ This library provides **approximations** based solely on screen metrics. It is *
 - **User-Agent strings** - For User-Agent based detection, consider [UAParser.js](https://github.com/faisalman/ua-parser-js)
 - **Hardware fingerprinting** - No access to device-specific hardware identifiers
 - **Browser features** - No feature detection or capability analysis
+- **Network requests** - No external data sources or tracking
+- **Cookies or storage** - No persistent data collection
 
 ### Detection Behavior
 
@@ -42,13 +54,13 @@ This library provides **approximations** based solely on screen metrics. It is *
 - **Shared Specifications**: Many Apple devices share identical screen specifications, making definitive identification impossible
 - **Approximation Only**: Results should be treated as educated guesses, not definitive identifications
 
-## Quick Start
+## Installation
 
 ```bash
 npm install detect-apple-device
 ```
 
-### Basic Usage
+### Quick Start
 
 ```typescript
 import { detectAppleDevice } from 'detect-apple-device';
@@ -56,20 +68,21 @@ import { detectAppleDevice } from 'detect-apple-device';
 // Automatic detection using current browser metrics
 const result = detectAppleDevice();
 
-// Find all perfect matches (confidence = 1.0)
-const perfectMatches = result.matches.filter(match => match.confidence === 1.0);
-
-if (perfectMatches.length > 0) {
-  console.log(`Found ${perfectMatches.length} possible device(s):`);
-  perfectMatches.forEach(match => {
+// Check if any devices were found (default: only perfect matches)
+if (result.matches.length > 0) {
+  console.log(`Found ${result.matches.length} possible device(s):`);
+  result.matches.forEach(match => {
     console.log(`- ${match.device.name} (${match.device.type})`);
+    console.log(`  Confidence: ${match.confidence}`);
   });
-} else if (result.matches.length > 0) {
-  console.log(`Best approximation: ${result.matches[0].device.name}`);
-  console.log(`Confidence: ${result.matches[0].confidence}`);
 } else {
   console.log('No matching Apple devices found');
 }
+
+// To get partial matches, lower the confidence threshold
+const partialResult = detectAppleDevice({
+  minConfidence: 0.66, // Allow 2/3 confidence matches
+});
 ```
 
 ### Manual Device Identification
@@ -104,7 +117,7 @@ Automatically detects the current device using browser metrics.
 {
   deviceTypes: [],              // No filtering (all types)
   minReleaseDate: '',          // No date filtering
-  minConfidence: 1,            // Perfect matches only
+  minConfidence: 1,            // Perfect 3/3 matches only
   useWidth: true,              // Include width in matching
   useHeight: true,             // Include height in matching
   useScaleFactor: true,        // Include scale factor in matching
@@ -209,7 +222,7 @@ const perfectMatches = detectAppleDevice({
   minConfidence: 1.0,
 });
 
-// Allow partial matches (66% confidence or higher)
+// Allow partial matches (2/3 confidence or higher)
 const partialMatches = detectAppleDevice({
   minConfidence: 0.66,
 });
@@ -375,7 +388,18 @@ if (hasRetinaDisplay) {
 
 ## Development
 
+### Prerequisites
+
+- Node.js 18.0.0 or higher
+- npm 8.0.0 or higher (or yarn/pnpm)
+
+### Setup
+
 ```bash
+# Clone the repository
+git clone https://github.com/gormlabenz/detect-apple-device.git
+cd detect-apple-device
+
 # Install dependencies
 npm install
 
@@ -387,7 +411,19 @@ npm run build
 
 # Lint
 npm run lint
+
+# Type check
+npm run typecheck
 ```
+
+### Scripts
+
+- `npm run build` - Build the library
+- `npm run test` - Run tests with coverage
+- `npm run test:watch` - Run tests in watch mode
+- `npm run lint` - Lint and fix code
+- `npm run typecheck` - Type check without emitting
+- `npm run clean` - Clean build directory
 
 ## Contributing
 
